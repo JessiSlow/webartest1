@@ -2,44 +2,36 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>WebAR mit Pattern-Marker</title>
 
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <!-- AR.js -->
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+    <!-- MindAR -->
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   </head>
 
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-
-      <!-- Eigener Pattern-Marker -->
-   <a-marker preset="hiro">
-
-  <a-box
-    color="red"
-    depth="1"
-    height="1"
-    width="1"
-    position="0 0.5 0">
-  </a-box>
-</a-marker>
-
-
-      <!-- Kamera -->
-      <a-entity camera></a-entity>
+  <body style="margin:0; overflow:hidden;">
 
     <a-scene
-  embedded
-  arjs="sourceType: webcam; debugUIEnabled: true;">
+      mindar-image="imageTargetSrc: targets/reiter.mind;"
+      embedded
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false">
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <!-- Target 0 = dein Bild -->
+      <a-entity mindar-image-target="targetIndex: 0">
+
+        <a-entity
+          gltf-model="url(assets/model.glb)"
+          scale="0.3 0.3 0.3"
+          position="0 0 0">
+        </a-entity>
+
+      </a-entity>
+
+    </a-scene>
 
   </body>
 </html>
-
-
-
-
-
-
-
-
